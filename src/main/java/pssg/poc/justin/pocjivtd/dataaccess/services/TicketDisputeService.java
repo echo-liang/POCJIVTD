@@ -9,6 +9,7 @@ import pssg.poc.justin.pocjivtd.dataaccess.mapper.DisputeTicketMapper;
 import pssg.poc.justin.pocjivtd.dataaccess.services.impl.TicketDisputeServiceImpl;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class TicketDisputeService.
  * @author HLiang
@@ -31,7 +32,13 @@ public class TicketDisputeService {
 		return disputeTicket;
 	}
 	
-	public Optional<DisputeTicket> findById (final Long disputeID) {
+	/**
+	 * Find by id.
+	 *
+	 * @param disputeID the dispute ID
+	 * @return the dispute ticket
+	 */
+	public DisputeTicket findById (final Long disputeID) {
 		return DisputeTicketMapper.mapToObject(ticketDisputeServiceImpl.findById(disputeID));
 	}
 	

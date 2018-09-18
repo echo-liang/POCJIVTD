@@ -8,6 +8,10 @@ import lombok.Data;
  */
 //@Data
 public class DisputeTicket {
+	
+	/** The dispute ID. */
+	private Long disputeID;
+	
 	/** The ticket NO. */
 	private String ticketNO;
 	
@@ -26,6 +30,25 @@ public class DisputeTicket {
 	/** The dispute status. */
 	private String disputeStatus;
 	
+	
+	/**
+	 * Gets the dispute ID.
+	 *
+	 * @return the dispute ID
+	 */
+	public Long getDisputeID() {
+		return disputeID;
+	}
+
+	/**
+	 * Sets the dispute ID.
+	 *
+	 * @param disputeID the new dispute ID
+	 */
+	public void setDisputeID(Long disputeID) {
+		this.disputeID = disputeID;
+	}
+
 	/**
 	 * Gets the ticket NO.
 	 *
