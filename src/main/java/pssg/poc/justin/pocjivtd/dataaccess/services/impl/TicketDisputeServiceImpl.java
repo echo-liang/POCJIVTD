@@ -49,6 +49,6 @@ public class TicketDisputeServiceImpl {
 	 * @return the optional
 	 */
 	public Optional<DisputeTicketEntity> findById (final Long Id) {
-		return disputeTicketRepository.findByDisputeId(Id);
+		return disputeTicketRepository.findById(Id);
 	}
 }
