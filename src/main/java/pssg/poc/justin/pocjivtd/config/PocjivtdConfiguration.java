@@ -48,7 +48,7 @@ public class PocjivtdConfiguration {
     public JndiObjectFactoryBean dataSource() {
         JndiObjectFactoryBean dataSource = new JndiObjectFactoryBean();
         //dataSource.setJndiName("java:comp/env/jdbc/global_globaldb");
-        dataSource.setJndiName("java:jboss/datasources/pocjidb");
+        dataSource.setJndiName("java:jboss/datasources/echodb1");
         dataSource.setProxyInterface(DataSource.class);
         dataSource.setLookupOnStartup(true);
 
