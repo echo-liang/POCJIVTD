@@ -21,10 +21,10 @@ public interface DisputeTicketRepository extends JpaRepository<DisputeTicketEnti
 	 * @param disputeID the dispute ID
 	 * @return the optional
 	 */
-	//Optional<DisputeTicketEntity> findByDisputeId(Long disputeID);
+	Optional<DisputeTicketEntity> findByDisputeId(Long disputeID);
 	
 	/* (non-Javadoc)
 	 * @see org.springframework.data.repository.CrudRepository#save(S)
 	 */
-	//DisputeTicketEntity save(DisputeTicketEntity affiliationEntity);
+	DisputeTicketEntity save(DisputeTicketEntity affiliationEntity);
 }
