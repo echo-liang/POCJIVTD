@@ -36,9 +36,19 @@ public class PocjivtdRestController {
 	 * @return the dispute ticket
 	 */
 	@GetMapping("/disputeTickets/{id}")
-	DisputeTicket one(@PathVariable Long id) {
+	String getDisputeTicket(@PathVariable Long id) {
 		logger.info("Get diputeTicket: {}", id);
-		return dispuateTicketService.findById(id);
+		DisputeTicket dt = dispuateTicketService.findById(id);
+		ObjectMapper mapper = new ObjectMapper();
+		String dtString = "";
+		try {
+			dtString = mapper.writeValueAsString(dt);
+			logger.info("diputeTicket: {}", dtString);
+		} catch (IOException e) {
+			logger.error("Exception occurred in getDisputTicket: {}", e.getMessage());
+		}  
+		
+		return dtString;
 	}
 	
 	/**
@@ -48,14 +58,16 @@ public class PocjivtdRestController {
 	 * @return the dispute ticket
 	 */
 	@PostMapping("/vtdispute")
-	DisputeTicket saveDisputeTicket(@RequestBody String newDisputeTicketStr) {
+	String saveDisputeTicket(@RequestBody String newDisputeTicketStr) {
 		logger.info("Save diputeTicket: {}", newDisputeTicketStr);
 		//convert String to object
 		ObjectMapper mapper = new ObjectMapper();
 		DisputeTicket newDisputeTicket = null;
 		try {
 			newDisputeTicket = mapper.readValue(newDisputeTicketStr, DisputeTicket.class);
-			return dispuateTicketService.saveDisputeTicket(newDisputeTicket);
+			dispuateTicketService.saveDisputeTicket(newDisputeTicket);
+			logger.info("Save disputTicket successful.");
+			return newDisputeTicketStr;
 		} catch (IOException e) {
 			logger.error("Exception occurred in saveDisputeTicket: {}", e.getMessage());
 		}  
