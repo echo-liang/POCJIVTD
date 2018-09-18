@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.baeldung.autoconfiguration.PocjivtdConfiguration
+pssg.poc.justin.pocjivtd.config.PocjivtdConfiguration
