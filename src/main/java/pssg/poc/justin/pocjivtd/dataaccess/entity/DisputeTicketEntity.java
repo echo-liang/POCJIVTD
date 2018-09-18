@@ -37,7 +37,7 @@ public class DisputeTicketEntity implements Serializable {
 	
 	/** The violation date. */
 	@Column(name = "VIOLATION_DT")
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
 	private String violationDate;
 	
 	/** The violation TM. */
@@ -46,7 +46,7 @@ public class DisputeTicketEntity implements Serializable {
 	
 	/** The dispute date. */
 	@Column(name = "DISPUTE_DT")
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
 	private String disputeDate;
 	
 	/** The evt XML. */
