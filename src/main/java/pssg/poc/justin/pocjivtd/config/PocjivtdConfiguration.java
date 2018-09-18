@@ -25,7 +25,6 @@ import org.springframework.core.Ordered;
 @Configuration
 @ConditionalOnClass(DataSource.class)
 @AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
-@ComponentScan
 @PropertySource("classpath:application.properties")
 public class PocjivtdConfiguration {
 	@Autowired
