@@ -2,6 +2,8 @@ package pssg.poc.justin.pocjivtd.dataaccess.mapper;
 
 import java.util.Optional;
 
+import com.mysql.jdbc.StringUtils;
+
 import pssg.poc.justin.pocjivtd.controller.DisputeTicket;
 import pssg.poc.justin.pocjivtd.dataaccess.entity.DisputeTicketEntity;
 
@@ -24,7 +26,7 @@ public class DisputeTicketMapper {
 		}
 		DisputeTicketEntity disputeTicketEntity = new DisputeTicketEntity();
 		disputeTicketEntity.setDisputeDate(disputeTicket.getDisputeDate());
-		disputeTicketEntity.setDisputeStatus(disputeTicket.getDisputeStatus());
+		disputeTicketEntity.setDisputeStatus(StringUtils.isNullOrEmpty(disputeTicket.getDisputeStatus()) ? "NEW" : disputeTicket.getDisputeStatus());
 		disputeTicketEntity.setEvtXML(disputeTicket.getEvtXML());
 		disputeTicketEntity.setTicketNO(disputeTicket.getTicketNO());
 		disputeTicketEntity.setViolationDate(disputeTicket.getViolationDate());
