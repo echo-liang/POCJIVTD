@@ -9,24 +9,27 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jndi.JndiObjectFactoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-
-
 import org.springframework.core.Ordered;
 
+
+/**
+ * The Class PocjivtdConfiguration.
+ * @author HLiang
+ */
 @Configuration
 @ConditionalOnClass(DataSource.class)
 @AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
 @PropertySource("classpath:application.properties")
 public class PocjivtdConfiguration {
+	
+	/** The env. */
 	@Autowired
     private Environment env;
 	
@@ -45,17 +48,26 @@ public class PocjivtdConfiguration {
         return dataSource;
     }*/
 
+	/**
+	 * Data source.
+	 *
+	 * @return the jndi object factory bean
+	 */
 	@Bean(name = "dataSource")
     public JndiObjectFactoryBean dataSource() {
         JndiObjectFactoryBean dataSource = new JndiObjectFactoryBean();
-        //dataSource.setJndiName("java:comp/env/jdbc/global_globaldb");
-        dataSource.setJndiName("java:jboss/datasources/echodb1");
+        dataSource.setJndiName("java:jboss/datasources/" + env.getProperty("MYSQL_DATABASE"));
         dataSource.setProxyInterface(DataSource.class);
         dataSource.setLookupOnStartup(true);
 
         return dataSource;
     }
 	
+    /**
+     * Entity manager factory.
+     *
+     * @return the local container entity manager factory bean
+     */
     @Bean
     @ConditionalOnBean(name = "dataSource")
     @ConditionalOnMissingBean
@@ -64,12 +76,15 @@ public class PocjivtdConfiguration {
         em.setDataSource((DataSource) dataSource().getObject());
         em.setPackagesToScan("pssg.poc.justin.pocjivtd");
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        //if (additionalProperties() != null) {
-        //    em.setJpaProperties(additionalProperties());
-        //}
         return em;
     }
 
+    /**
+     * Transaction manager.
+     *
+     * @param entityManagerFactory the entity manager factory
+     * @return the jpa transaction manager
+     */
     @Bean
     @ConditionalOnMissingBean(type = "JpaTransactionManager")
     JpaTransactionManager transactionManager(final EntityManagerFactory entityManagerFactory) {

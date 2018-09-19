@@ -10,6 +10,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+/**
+ * The Class PocjivtdApplication.
+ * @author HLiang
+ */
 @ComponentScan(basePackages={"pssg.poc.justin.pocjivtd"})
 @EnableJpaRepositories(basePackages="pssg.poc.justin.pocjivtd.dataaccess.repository")
 @EnableTransactionManagement
@@ -17,10 +21,18 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 public class PocjivtdApplication extends SpringBootServletInitializer {
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(PocjivtdApplication.class, args);
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.springframework.boot.web.servlet.support.SpringBootServletInitializer#configure(org.springframework.boot.builder.SpringApplicationBuilder)
+	 */
 	@Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(PocjivtdApplication.class);

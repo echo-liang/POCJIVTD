@@ -1,4 +1,4 @@
-package pssg.poc.justin.pocjivtd.dataaccess.entity;
+package pssg.poc.justin.pocjivtd.controller;
 
 public class DisputeTicketNotFoundException extends RuntimeException {
 	/**
